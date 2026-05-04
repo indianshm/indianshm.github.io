@@ -52,7 +52,9 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 66px;
+      min-height: 66px;
+      padding-top: 8px;
+      padding-bottom: 8px;
     }
 
     .site-logo {
@@ -88,7 +90,13 @@
     }
 
     /* nav */
+    .main-nav {
+      margin-left: auto;
+      display: flex;
+      justify-content: flex-end;
+    }
     .main-nav ul { list-style: none; display: flex; }
+    .main-nav > ul { align-items: center; }
     .main-nav > ul > li { position: relative; }
 
     .main-nav > ul > li > a {
@@ -107,7 +115,11 @@
     .dropdown {
       position: absolute;
       top: calc(100% + 1px);
-      left: 0;
+      left: auto;
+      right: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
       background: var(--white);
       border: 1px solid var(--rule);
       border-top: 2px solid var(--gold);
@@ -125,6 +137,8 @@
       transform: translateY(0);
     }
 
+    .dropdown li { display: block; }
+
     .dropdown li a {
       display: block;
       color: var(--muted);
@@ -136,18 +150,6 @@
 
     .dropdown li:last-child a { border-bottom: none; }
     .dropdown li a:hover { color: var(--navy); background: var(--cream); }
-
-    .header-search {
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: var(--muted);
-      padding: 6px;
-      display: flex;
-      align-items: center;
-      transition: color 0.15s;
-    }
-    .header-search:hover { color: var(--navy); }
 
     /* ══ VERSE STRIP ══
        Sits between the white header and the hero. Same dark tone as the
@@ -252,6 +254,10 @@
       height: 100%;
       display: flex;
       align-items: center;
+    }
+
+    .slide-content .container {
+      width: 100%;
     }
 
     .slide-content h1 {
@@ -571,8 +577,8 @@
     .footer-brand-logo img {
       height: 32px;
       width: auto;
-      filter: brightness(0) invert(1);
-      opacity: 0.75;
+      /* filter: brightness(0) invert(1); */
+      /* opacity: 0.75; */
     }
 
     .footer-brand-logo .fl-abbr {
@@ -695,12 +701,6 @@
       </ul>
     </nav>
 
-    <button class="header-search" aria-label="Search">
-      <svg width="17" height="17" viewBox="0 0 17 17" fill="none">
-        <circle cx="7" cy="7" r="4.5" stroke="currentColor" stroke-width="1.5"/>
-        <line x1="10.5" y1="10.5" x2="15" y2="15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-      </svg>
-    </button>
   </div>
 </header>
 
@@ -896,7 +896,7 @@
     <div class="footer-main">
       <div class="footer-brand">
         <div class="footer-brand-logo">
-          <img src="logo.png" alt="">
+          <img src="logo-traced.svg" alt="ISHM logo">
           <span class="fl-abbr">ISHM</span>
         </div>
         <p>Promoting research and education in the history of mathematics, with special emphasis on the rich mathematical traditions of India. Established 1978.</p>
