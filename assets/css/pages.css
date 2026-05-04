@@ -1,0 +1,29 @@
+/* Optional inner-page chrome (kept for future static pages). */
+.page-hero {
+  padding: 48px 0 32px; border-bottom: 1px solid var(--rule); background: var(--cream);
+}
+
+.page-hero h1 {
+  font-family: var(--font-display); font-size: 36px; font-weight: 400;
+  color: var(--navy); margin-bottom: 8px;
+}
+
+.page-hero p { font-size: 14px; color: var(--muted); max-width: 560px; }
+
+.page-section { padding: 48px 0 72px; }
+
+.page-section h2 {
+  font-family: var(--font-display); font-size: 24px; font-weight: 400;
+  color: var(--navy); margin: 32px 0 12px;
+}
+
+.page-section h2:first-child { margin-top: 0; }
+
+.page-section p,
+.page-section ul {
+  font-size: 14px; color: var(--muted); line-height: 1.75; max-width: 720px;
+}
+
+.page-section ul { margin: 12px 0 0 1.25em; list-style: disc; }
+
+.page-section li { margin-bottom: 8px; }
