@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ISHM – Indian Society for History of Mathematics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:    #1B3A6B;
+      --navy-dk: #111f3a;
+      --gold:    #C96F00;
+      --gold-lt: #E8941A;
+      --white:   #ffffff;
+      --cream:   #F9F7F3;
+      --text:    #1a1a1a;
+      --muted:   #666666;
+      --rule:    #E2DDD5;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    .container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    /* ══ HEADER ══ */
+    header {
+      background: var(--white);
+      border-bottom: 1px solid var(--rule);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 66px;
+    }
+
+    .site-logo {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+
+    .site-logo img {
+      height: 38px;
+      width: auto;
+    }
+
+    .logo-label {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+
+    .logo-label .abbr {
+      font-family: 'EB Garamond', serif;
+      font-size: 22px;
+      color: var(--navy);
+      letter-spacing: 0.07em;
+    }
+
+    .logo-label .full {
+      font-size: 9.5px;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+
+    /* nav */
+    .main-nav ul { list-style: none; display: flex; }
+    .main-nav > ul > li { position: relative; }
+
+    .main-nav > ul > li > a {
+      display: block;
+      color: var(--navy);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      padding: 8px 14px;
+      transition: color 0.15s;
+    }
+
+    .main-nav > ul > li > a:hover,
+    .main-nav > ul > li:hover > a { color: var(--gold); }
+
+    .dropdown {
+      position: absolute;
+      top: calc(100% + 1px);
+      left: 0;
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-top: 2px solid var(--gold);
+      min-width: 200px;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(4px);
+      transition: opacity 0.16s, transform 0.16s;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.07);
+    }
+
+    .main-nav > ul > li:hover .dropdown {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .dropdown li a {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      padding: 9px 16px;
+      border-bottom: 1px solid var(--rule);
+      transition: color 0.12s, background 0.12s;
+    }
+
+    .dropdown li:last-child a { border-bottom: none; }
+    .dropdown li a:hover { color: var(--navy); background: var(--cream); }
+
+    .header-search {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--muted);
+      padding: 6px;
+      display: flex;
+      align-items: center;
+      transition: color 0.15s;
+    }
+    .header-search:hover { color: var(--navy); }
+
+    /* ══ VERSE STRIP ══
+       Sits between the white header and the hero. Same dark tone as the
+       hero's overlay so the two read as one unified block — the verse
+       floats serenely above the moving imagery. */
+    .verse-strip {
+      background: var(--navy-dk);
+      padding: 22px 40px;
+      text-align: center;
+      position: relative;
+    }
+
+    .verse-strip::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 48px;
+      height: 1px;
+      background: rgba(232,148,26,0.35);
+    }
+
+    .verse-strip-text {
+      font-family: 'EB Garamond', serif;
+      font-size: 17px;
+      font-style: italic;
+      color: rgba(255,255,255,0.82);
+      letter-spacing: 0.06em;
+      line-height: 1.7;
+    }
+
+    .verse-strip-text .half { display: inline; }
+    .verse-strip-text .sep {
+      display: inline-block;
+      width: 1px;
+      height: 14px;
+      background: rgba(232,148,26,0.4);
+      vertical-align: middle;
+      margin: 0 18px;
+    }
+
+    .verse-strip-attr {
+      display: inline-block;
+      margin-left: 20px;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold-lt);
+      vertical-align: middle;
+      font-style: normal;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* ══ HERO ══ */
+    .hero {
+      position: relative;
+      height: 500px;
+      overflow: hidden;
+      background: var(--navy-dk);
+    }
+
+    /* thin gold seam between verse strip and hero */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: rgba(201,111,0,0.25);
+      z-index: 5;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.9s ease;
+    }
+
+    .slide.active { opacity: 1; }
+
+    .slide-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transition: transform 7s ease;
+      opacity: 0.45;
+    }
+
+    .slide.active .slide-bg { transform: scale(1.04); }
+
+    .slide-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(100deg, rgba(17,31,58,0.82) 0%, rgba(17,31,58,0.4) 60%, transparent 100%);
+    }
+
+    .slide-content {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+
+    .slide-content h1 {
+      font-family: 'EB Garamond', serif;
+      font-size: 40px;
+      font-weight: 400;
+      color: var(--white);
+      line-height: 1.22;
+      max-width: 520px;
+      margin-bottom: 12px;
+    }
+
+    .slide-content p {
+      color: rgba(255,255,255,0.7);
+      font-size: 14.5px;
+      max-width: 420px;
+      line-height: 1.7;
+      margin-bottom: 26px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 24px;
+      font-size: 12.5px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      border: 1.5px solid transparent;
+      transition: background 0.18s, color 0.18s;
+      cursor: pointer;
+    }
+
+    .btn-gold { background: var(--gold); color: var(--white); border-color: var(--gold); }
+    .btn-gold:hover { background: #a85a00; border-color: #a85a00; }
+
+    .carousel-dots {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 7px;
+      z-index: 10;
+    }
+
+    .dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      cursor: pointer;
+      border: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .dot.active { background: var(--gold-lt); transform: scale(1.5); }
+
+    .carousel-arrow {
+      position: absolute;
+      top: 50%; transform: translateY(-50%);
+      z-index: 10;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: white;
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: background 0.18s;
+    }
+
+    .carousel-arrow:hover { background: rgba(255,255,255,0.18); }
+    .carousel-arrow.prev { left: 20px; }
+    .carousel-arrow.next { right: 20px; }
+
+    /* ══ INTRO ══ */
+    .intro-section {
+      padding: 80px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .intro-section p.lead {
+      font-family: 'EB Garamond', serif;
+      font-size: 25px;
+      line-height: 1.6;
+      color: var(--navy);
+      max-width: 740px;
+      margin-bottom: 18px;
+    }
+
+    .intro-section p.sub {
+      font-size: 13.5px;
+      color: var(--muted);
+      max-width: 540px;
+      line-height: 1.75;
+    }
+
+    .text-link {
+      display: inline-block;
+      margin-top: 22px;
+      font-size: 12.5px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      color: var(--gold);
+      border-bottom: 1px solid currentColor;
+      padding-bottom: 1px;
+      transition: color 0.15s;
+    }
+
+    .text-link:hover { color: var(--navy); }
+
+    /* ══ SECTIONS ══ */
+    .section { padding: 72px 0; }
+    .section.alt { background: var(--cream); }
+
+    .section-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 32px;
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 14px;
+    }
+
+    .section-head h2 {
+      font-family: 'EB Garamond', serif;
+      font-size: 30px;
+      font-weight: 400;
+      color: var(--navy);
+    }
+
+    .see-all {
+      font-size: 11.5px;
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--gold);
+      flex-shrink: 0;
+      margin-left: 20px;
+      transition: color 0.15s;
+    }
+
+    .see-all:hover { color: var(--navy); }
+
+    /* ══ CARDS ══ */
+    .card-grid { display: grid; gap: 20px; }
+    .card-grid.col-4 { grid-template-columns: repeat(4, 1fr); }
+    .card-grid.col-3 { grid-template-columns: repeat(3, 1fr); }
+
+    .card {
+      border: 1px solid var(--rule);
+      background: var(--white);
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.18s;
+    }
+
+    .section.alt .card { background: var(--white); }
+    .card:hover { border-color: #c5bdb4; }
+
+    .card-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .card-meta {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 9px;
+    }
+
+    .card-body h3 {
+      font-family: 'EB Garamond', serif;
+      font-size: 18px;
+      color: var(--navy);
+      margin-bottom: 7px;
+      line-height: 1.3;
+    }
+
+    .card-body p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.65;
+      flex: 1;
+    }
+
+    .card-link {
+      margin-top: 14px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--gold);
+      letter-spacing: 0.03em;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      border-bottom: 1px solid transparent;
+      padding-bottom: 1px;
+      transition: border-color 0.15s;
+    }
+
+    .card-link:hover { border-color: var(--gold); }
+
+    /* ══ JOURNAL ══ */
+    .journal-strip {
+      padding: 72px 0;
+      background: var(--navy-dk);
+      color: var(--white);
+    }
+
+    .journal-layout {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .journal-mark {
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 36px 28px;
+      text-align: center;
+      font-family: 'EB Garamond', serif;
+    }
+
+    .journal-mark .dev {
+      font-size: 38px;
+      color: var(--gold-lt);
+      margin-bottom: 8px;
+      line-height: 1;
+    }
+
+    .journal-mark .en {
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+      font-style: italic;
+      margin-bottom: 16px;
+    }
+
+    .journal-mark .vol {
+      font-size: 10.5px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold-lt);
+    }
+
+    .journal-right h2 {
+      font-family: 'EB Garamond', serif;
+      font-size: 32px;
+      font-weight: 400;
+      margin-bottom: 4px;
+    }
+
+    .journal-right .tag {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold-lt);
+      margin-bottom: 20px;
+    }
+
+    .journal-right p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.62);
+      line-height: 1.75;
+      margin-bottom: 28px;
+    }
+
+    .issue-list { list-style: none; margin-bottom: 28px; }
+
+    .issue-list li {
+      display: flex;
+      gap: 16px;
+      align-items: baseline;
+      padding: 11px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      font-size: 14px;
+      color: rgba(255,255,255,0.7);
+      transition: color 0.15s;
+    }
+
+    .issue-list li:first-child { border-top: 1px solid rgba(255,255,255,0.07); }
+    .issue-list li:hover { color: var(--white); }
+
+    .issue-vol {
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold-lt);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* ══ FOOTER ══ */
+    footer { background: var(--navy-dk); border-top: 2px solid var(--gold); }
+
+    .footer-main {
+      padding: 56px 0 40px;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+    }
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .footer-brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .footer-brand-logo img {
+      height: 32px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      opacity: 0.75;
+    }
+
+    .footer-brand-logo .fl-abbr {
+      font-family: 'EB Garamond', serif;
+      font-size: 20px;
+      color: rgba(255,255,255,0.75);
+      letter-spacing: 0.07em;
+    }
+
+    .footer-brand p {
+      font-size: 12.5px;
+      color: rgba(255,255,255,0.38);
+      line-height: 1.7;
+      max-width: 230px;
+    }
+
+    .footer-col h4 {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--gold-lt);
+      margin-bottom: 14px;
+    }
+
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+
+    .footer-col a {
+      font-size: 13px;
+      color: rgba(255,255,255,0.4);
+      transition: color 0.15s;
+    }
+
+    .footer-col a:hover { color: rgba(255,255,255,0.8); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding: 16px 0;
+    }
+
+    .footer-bottom .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-bottom p, .footer-bottom a {
+      font-size: 11.5px;
+      color: rgba(255,255,255,0.28);
+      transition: color 0.15s;
+    }
+
+    .footer-bottom a:hover { color: rgba(255,255,255,0.55); }
+    .footer-bottom-links { display: flex; gap: 18px; }
+
+    /* ══ RESPONSIVE ══ */
+    @media (max-width: 960px) {
+      .card-grid.col-4 { grid-template-columns: repeat(2, 1fr); }
+      .card-grid.col-3 { grid-template-columns: repeat(2, 1fr); }
+      .journal-layout { grid-template-columns: 1fr; gap: 36px; }
+      .footer-main { grid-template-columns: 1fr 1fr; gap: 32px; }
+    }
+
+    @media (max-width: 640px) {
+      .main-nav { display: none; }
+      .hero { height: 380px; }
+      .slide-content h1 { font-size: 28px; }
+      .verse-strip-text { font-size: 14px; }
+      .verse-strip-text .sep { display: none; }
+      .verse-strip-attr { display: block; margin: 6px 0 0; }
+      .card-grid.col-4,
+      .card-grid.col-3 { grid-template-columns: 1fr; }
+      .footer-main { grid-template-columns: 1fr; }
+      .container { padding: 0 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ HEADER ══ -->
+<header>
+  <div class="container">
+    <a class="site-logo" href="/" aria-label="ISHM home">
+      <img src="logo.png" alt="">
+      <div class="logo-label">
+        <span class="abbr">ISHM</span>
+        <span class="full">Indian Society for History of Mathematics</span>
+      </div>
+    </a>
+
+    <nav class="main-nav" aria-label="Main navigation">
+      <ul>
+        <li>
+          <a href="#">About</a>
+          <ul class="dropdown">
+            <li><a href="#">History &amp; Mission</a></li>
+            <li><a href="#">Governing Body</a></li>
+            <li><a href="#">Membership</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">Gaṇita Bhāratī</a>
+          <ul class="dropdown">
+            <li><a href="#">Browse Issues</a></li>
+            <li><a href="#">Submit a Paper</a></li>
+            <li><a href="#">Instructions for Authors</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">Events</a>
+          <ul class="dropdown">
+            <li><a href="#">Annual Conferences</a></li>
+            <li><a href="#">Workshops &amp; Seminars</a></li>
+            <li><a href="#">Past Events</a></li>
+          </ul>
+        </li>
+
+      </ul>
+    </nav>
+
+    <button class="header-search" aria-label="Search">
+      <svg width="17" height="17" viewBox="0 0 17 17" fill="none">
+        <circle cx="7" cy="7" r="4.5" stroke="currentColor" stroke-width="1.5"/>
+        <line x1="10.5" y1="10.5" x2="15" y2="15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<!-- ══ VERSE STRIP ══ -->
+<div class="verse-strip" role="note" aria-label="Society motto">
+  <span class="verse-strip-text">
+    <span class="half">यथा शिखा मयूराणां नागानां मणयो यथा </span>
+    <span class="sep"></span>
+    <span class="half">तद् वेदांगशास्त्राणां गणितं मूर्ध्नि वर्तते</span>
+  </span>
+</div>
+
+<!-- ══ HERO ══ -->
+<section class="hero" aria-label="Featured announcements">
+
+  <div class="slide active">
+    <div class="slide-bg" style="background-image:url('purana.jpg');"></div>
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <div class="container">
+        <h1>40th Annual Conference of ISHM</h1>
+        <p>Indian Institute of Technology, Roorkee. Theme: Computational Methods in Ancient and Medieval Indian Mathematics.</p>
+        <a href="#" class="btn btn-gold">Read more</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-bg" style="background-image:url('lilavati.jpg');"></div>
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <div class="container">
+        <h1>Gaṇita Bhāratī — Volume 46 Available</h1>
+        <p>The latest issue covers Brahmagupta's cyclic quadrilateral theorem, the Kerala school of mathematics, and Ramanujan's notebooks.</p>
+        <a href="#" class="btn btn-gold">Browse journal</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-bg" style="background-image:url('bakshali.jpg'); background-position: center 20%;"></div>
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <div class="container">
+        <h1>Call for Papers: Zero and Infinity in Indian Mathematics</h1>
+        <p>Submissions invited for a special thematic issue exploring the conceptualisation of zero, infinity, and positional notation.</p>
+        <a href="#" class="btn btn-gold">Submit a paper</a>
+      </div>
+    </div>
+  </div>
+
+  <button class="carousel-arrow prev" aria-label="Previous" onclick="changeSlide(-1)">
+    <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M8 2L3 6.5L8 11" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <button class="carousel-arrow next" aria-label="Next" onclick="changeSlide(1)">
+    <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M5 2L10 6.5L5 11" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+
+  <div class="carousel-dots">
+    <button class="dot active" onclick="goToSlide(0)" aria-label="Slide 1"></button>
+    <button class="dot" onclick="goToSlide(1)" aria-label="Slide 2"></button>
+    <button class="dot" onclick="goToSlide(2)" aria-label="Slide 3"></button>
+  </div>
+</section>
+
+<!-- ══ INTRO ══ -->
+<section class="intro-section">
+  <div class="container">
+    <p class="lead">The Indian Society for History of Mathematics is dedicated to promoting research, education, and awareness of the rich tradition of mathematical thought in India and across the world.</p>
+    <p class="sub">Founded in 1978, ISHM fosters scholarship through its journal <em>Gaṇita Bhāratī</em>, annual conferences, and collaborative programs with institutions across India and internationally.</p>
+    <a href="#" class="text-link">About ISHM &rarr;</a>
+  </div>
+</section>
+
+<!-- ══ UPCOMING EVENTS ══ -->
+<section class="section alt">
+  <div class="container">
+    <div class="section-head">
+      <h2>Upcoming Events</h2>
+      <a href="#" class="see-all">See all &rarr;</a>
+    </div>
+
+    <div class="card-grid col-4">
+      <a class="card" href="#">
+        <div class="card-body">
+          <div class="card-meta">12 – 14 Dec 2025 · Conference</div>
+          <h3>40th Annual Conference of ISHM</h3>
+          <p>IIT Roorkee, Uttarakhand. Computational Methods in Ancient and Medieval Indian Mathematics.</p>
+          <span class="card-link">Read more &rarr;</span>
+        </div>
+      </a>
+      <a class="card" href="#">
+        <div class="card-body">
+          <div class="card-meta">8 – 9 Nov 2025 · Workshop</div>
+          <h3>Kerala School of Astronomy &amp; Mathematics</h3>
+          <p>University of Kerala, Thiruvananthapuram. Contributions of Mādhava, Nīlakaṇṭha, and Jyeṣṭhadeva.</p>
+          <span class="card-link">Read more &rarr;</span>
+        </div>
+      </a>
+      <a class="card" href="#">
+        <div class="card-body">
+          <div class="card-meta">22 Feb 2026 · Lecture</div>
+          <h3>Ramanujan Memorial Lecture</h3>
+          <p>TIFR, Mumbai. Annual lecture series in memory of Srinivasa Ramanujan on his birth anniversary.</p>
+          <span class="card-link">Read more &rarr;</span>
+        </div>
+      </a>
+      <a class="card" href="#">
+        <div class="card-body">
+          <div class="card-meta">March 2026 · Seminar</div>
+          <h3>Śulbasūtras and Vedic Geometry</h3>
+          <p>BHU, Varanasi. Geometric content of the Śulbasūtras and their relation to later Indian traditions.</p>
+          <span class="card-link">Read more &rarr;</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ JOURNAL ══ -->
+<section class="journal-strip">
+  <div class="container">
+    <div class="journal-layout">
+      <div class="journal-mark">
+        <div class="dev">गणित भारती</div>
+        <div class="en">Gaṇita Bhāratī</div>
+        <div class="vol">Vol. 46 &nbsp;·&nbsp; 2024</div>
+      </div>
+      <div class="journal-right">
+        <h2>Gaṇita Bhāratī</h2>
+        <div class="tag">Bulletin of ISHM &nbsp;·&nbsp; ISSN 0970-0307 &nbsp;·&nbsp; Since 1979</div>
+        <p>Our peer-reviewed journal covers all aspects of the history of mathematics, with particular emphasis on Indian contributions. Papers are welcomed in English and Sanskrit with English abstracts.</p>
+        <ul class="issue-list">
+          <li>
+            <span class="issue-vol">Vol. 46 · 2024</span>
+            <span>Special Issue: Zero and the Foundations of Indian Arithmetic</span>
+          </li>
+          <li>
+            <span class="issue-vol">Vol. 45 · 2023</span>
+            <span>Kerala Astronomy, Combinatorics in Sanskrit Prosody</span>
+          </li>
+          <li>
+            <span class="issue-vol">Vol. 44 · 2022</span>
+            <span>Bakhshālī Manuscript, Jain Mathematics, Magic Squares</span>
+          </li>
+        </ul>
+        <a href="#" class="btn btn-gold">Browse all issues</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ NEWS ══ -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <h2>Latest News</h2>
+      <a href="#" class="see-all">See all &rarr;</a>
+    </div>
+
+    <div class="card-grid col-3">
+      <a class="card" href="#">
+        <div class="card-body">
+          <div class="card-meta">28 October 2025</div>
+          <h3>ISHM Elects New Governing Body for 2025–2027</h3>
+          <p>At the Annual General Meeting in Pune, a new governing body was elected to lead the society for the next two years.</p>
+          <span class="card-link">Read more &rarr;</span>
+        </div>
+      </a>
+      <a class="card" href="#">
+        <div class="card-body">
+          <div class="card-meta">14 September 2025</div>
+          <h3>New Book: "Zero to Infinity — India's Mathematical Journey"</h3>
+          <p>ISHM publishes a new edited volume tracing three thousand years of mathematical innovation on the Indian subcontinent.</p>
+          <span class="card-link">Read more &rarr;</span>
+        </div>
+      </a>
+      <a class="card" href="#">
+        <div class="card-body">
+          <div class="card-meta">1 August 2025</div>
+          <h3>ISHM Awards 2025: Call for Nominations</h3>
+          <p>Nominations are invited for the ISHM Annual Award for distinguished contributions to the history of mathematics in India.</p>
+          <span class="card-link">Read more &rarr;</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="container">
+    <div class="footer-main">
+      <div class="footer-brand">
+        <div class="footer-brand-logo">
+          <img src="logo.png" alt="">
+          <span class="fl-abbr">ISHM</span>
+        </div>
+        <p>Promoting research and education in the history of mathematics, with special emphasis on the rich mathematical traditions of India. Established 1978.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>About</h4>
+        <ul>
+          <li><a href="#">History &amp; Mission</a></li>
+          <li><a href="#">Governing Body</a></li>
+          <li><a href="#">Membership</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Gaṇita Bhāratī</h4>
+        <ul>
+          <li><a href="#">Browse Issues</a></li>
+          <li><a href="#">Submit a Paper</a></li>
+          <li><a href="#">Instructions for Authors</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Events</h4>
+        <ul>
+          <li><a href="#">Annual Conferences</a></li>
+          <li><a href="#">Workshops &amp; Seminars</a></li>
+          <li><a href="#">Past Events</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container">
+      <p>&copy; 2025 Indian Society for History of Mathematics</p>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Sitemap</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  let current = 0;
+  const slides = document.querySelectorAll('.slide');
+  const dots   = document.querySelectorAll('.dot');
+  let timer;
+
+  function goToSlide(n) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+    resetTimer();
+  }
+
+  function changeSlide(dir) { goToSlide(current + dir); }
+
+  function resetTimer() {
+    clearInterval(timer);
+    timer = setInterval(() => changeSlide(1), 5500);
+  }
+
+  resetTimer();
+</script>
+</body>
+</html>
