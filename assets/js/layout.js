@@ -3,17 +3,16 @@
   var SITE_HOME = 'https://bhumikamittal.in/ishm-template/';
   var ASSETS = 'assets';
 
-  /** Nav/footer targets: standalone pages removed for now — replace `#` when pages ship. */
   var L = {
-    about: '#',
-    history: '#',
-    governing: '#',
-    membership: '#',
+    about: 'about.html',
+    history: 'about.html',
+    governing: 'governing-body.html',
+    membership: 'membership.html',
     contact: '#',
-    journal: '#',
-    issues: '#',
-    submit: '#',
-    authors: '#',
+    journal: 'ganita-bharati.html',
+    issues: 'ganita-bharati.html',
+    submit: 'ganita-bharati.html#submit',
+    authors: 'ganita-bharati.html',
     events: '#',
     annual: '#',
     workshops: '#',
