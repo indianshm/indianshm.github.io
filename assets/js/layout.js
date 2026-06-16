@@ -1,6 +1,5 @@
 (function () {
-  /** Canonical site URL (path on bhumikamittal.in hosting). Change if the deploy path changes. */
-  var SITE_HOME = 'https://bhumikamittal.in/ishm-template/';
+  var SITE_HOME = '/';
   var ASSETS = 'assets';
 
   var L = {
