@@ -10,10 +10,11 @@
     membership: 'membership.html',
     contact: '#',
     journal: 'ganita-bharati.html',
-    issues: 'ganita-bharati.html',
+    issues: 'ganita-bharati.html#issues',
     submit: 'ganita-bharati.html#submit',
-    authors: 'ganita-bharati.html',
+    authors: 'ganita-bharati.html#template',
     events: '#',
+    ichim: 'ichim-2026.html',
     annual: '#',
     workshops: '#',
     past: '#'
@@ -59,6 +60,7 @@
         <li>
           <a href="${L.events}">Events</a>
           <ul class="dropdown">
+            <li><a href="${L.ichim}">ICHIM 2026</a></li>
             <li><a href="${L.annual}">Annual Conferences</a></li>
             <li><a href="${L.workshops}">Workshops &amp; Seminars</a></li>
             <li><a href="${L.past}">Past Events</a></li>
@@ -106,6 +108,7 @@
       <div class="footer-col">
         <h4>Events</h4>
         <ul>
+          <li><a href="${L.ichim}">ICHIM 2026</a></li>
           <li><a href="${L.annual}">Annual Conferences</a></li>
           <li><a href="${L.workshops}">Workshops &amp; Seminars</a></li>
           <li><a href="${L.past}">Past Events</a></li>

@@ -1,7 +1,8 @@
 (function () {
   var slides = document.querySelectorAll('.hero .slide');
   var dots = document.querySelectorAll('.hero .dot');
-  if (!slides.length) return;
+  // Single (or no) slide: static hero, no rotation/controls needed.
+  if (slides.length <= 1) return;
 
   var current = 0;
   var timer;

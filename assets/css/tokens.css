@@ -1,4 +1,4 @@
-/* Design tokens — change colors/spacing here to update the whole site. */
+/* Design tokens - change colors/spacing here to update the whole site. */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {

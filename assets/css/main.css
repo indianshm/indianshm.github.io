@@ -1,4 +1,4 @@
-/* Entry bundle — order matters (tokens first, responsive last). Plain CSS @import is fine here (no preprocessor). */
+/* Entry bundle - order matters (tokens first, responsive last). Plain CSS @import is fine here (no preprocessor). */
 @import url("tokens.css");
 @import url("base.css");
 @import url("header.css");
